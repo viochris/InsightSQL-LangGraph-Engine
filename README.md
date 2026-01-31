@@ -101,7 +101,7 @@ Using `langgraph.prebuilt.create_react_agent`, the system navigates a structured
     * **Pro Tip:** You can switch languages in the sidebar mid-conversation, and the Agent will adapt immediately without needing a reset.
 4.  **Manage:**
     * Use **"View Reasoning Trace"** to verify the SQL query used.
-    * Use **"🧹 Clear Conversation"** to declutter the screen and start a new analysis topic (Note: AI will forget previous context).
+    * Use **"🧹 Clear Conversation"** to declutter the screen and start a new analysis topic (Note: AI forgets previous context, but the **Database connection remains active**).
     * Use **"🔄 Full System Reset"** if you change API keys, switch databases, or encounter a system error.
 
 ## 📷 Gallery
