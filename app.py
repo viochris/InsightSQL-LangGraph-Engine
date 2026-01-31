@@ -90,20 +90,21 @@ with st.sidebar:
     st.divider()
 
     # Button to clear the chat history (Soft Reset)
-    # This invokes 'reset_state' to clear messages without breaking the database connection
+    # This clears the visible messages AND the agent's memory (since LangGraph is stateless),
+    # but it KEEPS the database connection alive for faster querying.
     st.button(
-        "🧹 Clear Screen Only", # Improved label with emoji
+        "🧹 Clear Conversation", # Updated label: More accurate than "Clear Screen"
         on_click=reset_chat_display,
         use_container_width=True,
-        help="Clears the chat text to declutter the screen, but the AI KEEPS its memory of the conversation." # Filled help text
+        help="Clears the chat history to start a fresh topic. The AI will forget the previous context, but the database remains connected." # Updated help text
     )
 
     st.button(
-        "🔄 Full System Reset", # Improved label with emoji
+        "🔄 Full System Reset", # Label remains appropriate
         on_click=reset_state,
         type="primary",
         use_container_width=True,
-        help="Wipes EVERYTHING: Chat history, AI Memory, and Connections. Starts 100% fresh." # Filled help text
+        help="Disconnects the database, kills the agent, and wipes all memory. Use this to switch databases or API keys." # Updated help text
     )
 
     # Main action button to initialize the Agent
@@ -116,7 +117,7 @@ with st.sidebar:
 
     st.divider()
 
-# --- USER GUIDE & DOCUMENTATION ---
+    # --- USER GUIDE & DOCUMENTATION ---
     # These sections provide self-service support, reducing the need for external explanations.
     
     # Expandable "How To Use" Guide
@@ -154,7 +155,7 @@ with st.sidebar:
         A: Since this is a specialized prototype, the database is currently linked via code. To use your own data:
         1. **Prepare your file:** Ensure you have a valid SQLite database file (e.g., `my_data.db`).
         2. **Upload:** Place the file in the **same root directory** as `app.py`.
-        3. **Modify Code:** Open `app.py` and locate the connection setup (approx. **Line 245**).
+        3. **Modify Code:** Open `app.py` and locate the connection setup (approx. **Line 254**).
         4. **Update URI:** Change the code from:  
             `db = SQLDatabase.from_uri("sqlite:///dresses.db")`  
             to:  
