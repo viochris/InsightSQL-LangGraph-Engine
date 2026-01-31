@@ -28,10 +28,10 @@ Using `langgraph.prebuilt.create_react_agent`, the system navigates a structured
 * **Strict Output Logic:** The system prompt enforces a critical logic layer. Even if you ask in Indonesian, if the setting is "English", the Agent translates the final business insight into English automatically.
 
 ### 🛡️ Robust State Management
-* **Persistent Memory:** The AI remembers conversation context across Streamlit re-runs (`st.session_state`).
+* **Persistent Memory:** The AI manages conversation context within the active session (`st.session_state`).
 * **Dual Reset Modes:**
-    * `🧹 Clear Screen Only`: Cleans the UI for presentation but **keeps the AI's memory** intact.
-    * `🔄 Full System Reset`: Performs a "Hard Reset"—wiping memory, killing the agent executor, and resetting API connections.
+    * `🧹 Clear Conversation`: Clears the UI and **resets the Agent's memory** to start a fresh topic. The database connection remains active, but the AI forgets the previous context.
+    * `🔄 Full System Reset`: Performs a "Hard Reset"—wiping memory, killing the agent executor, disconnecting the database, and resetting API connections.
 
 ## 🛠️ Tech Stack
 * **LLM:** Google Gemini 2.5 Flash (via `ChatGoogleGenerativeAI`).
@@ -101,7 +101,8 @@ Using `langgraph.prebuilt.create_react_agent`, the system navigates a structured
     * **Pro Tip:** You can switch languages in the sidebar mid-conversation, and the Agent will adapt immediately without needing a reset.
 4.  **Manage:**
     * Use **"View Reasoning Trace"** to verify the SQL query used.
-    * Use **"🔄 Full System Reset"** if you change API keys or want to clear the context completely.
+    * Use **"🧹 Clear Conversation"** to declutter the screen and start a new analysis topic (Note: AI will forget previous context).
+    * Use **"🔄 Full System Reset"** if you change API keys, switch databases, or encounter a system error.
 
 ## 📷 Gallery
 
